@@ -6,10 +6,7 @@ import { BindingStateProvider } from './BindingState.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BindingStateProvider initialState={{
-      count: 0,
-      counter: {
-        count: 0
-      }
+      count: 0
     }}>
       <App />
     </BindingStateProvider>

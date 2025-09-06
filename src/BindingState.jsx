@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useMemo } from 'react';
+import { createContext, useContext, useState, useMemo, useEffect } from 'react';
 
 const BindingStateContext = createContext();
 
@@ -7,20 +7,11 @@ export function useBindingState() {
 }
 
 export function BindingStateProvider({ children, initialState = {} }) {
-  const [state, setState] = useState(initialState);
-  let pid;
-  const scheduleUpdate = () => {
-    if (pid) {
-      cancelAnimationFrame(pid);
-    }
-    pid = requestAnimationFrame(() => {
-      setState({...state});
-    });
-  };
+  const [state, setState] = useState({ ...initialState });
   const createProxy = (obj) => {
     for (const key in obj) {
       if (typeof obj[key] === 'object') {
-        obj[key] = createProxy({...obj[key]});
+        obj[key] = createProxy({ ...obj[key] });
       }
     }
     return new Proxy(obj, {
@@ -29,14 +20,13 @@ export function BindingStateProvider({ children, initialState = {} }) {
       },
       set(target, prop, value) {
         target[prop] = value;
-        scheduleUpdate();
+        setState({ ...state });
         return true;
       },
     });
   };
-  const stateProxy = useMemo(() => createProxy(initialState));
   return (
-    <BindingStateContext.Provider value={stateProxy}>
+    <BindingStateContext.Provider value={createProxy(state)}>
       {children}
     </BindingStateContext.Provider>
   );
