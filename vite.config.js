@@ -10,7 +10,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/BindingState.jsx'),
       name: 'react-binding-state',
-      fileName: 'react-binding-state',
+      fileName: (format) => `react-binding-state.${format === 'es' ? 'mjs' : 'umd.cjs'}`,
     },
     rollupOptions: {
       external: ['react'],

@@ -5,12 +5,12 @@
   "license": "MIT",
   "type": "module",
   "homepage": "https://nmhung1210.github.io/react-binding-state",
-  "main": "./dist/react-binding-state.umd.js",
+  "main": "./dist/react-binding-state.umd.cjs",
   "module": "./dist/react-binding-state.mjs",
   "exports": {
     ".": {
       "import": "./dist/react-binding-state.mjs",
-      "require": "./dist/react-binding-state.umd.js"
+      "require": "./dist/react-binding-state.umd.cjs"
     }
   },
   "scripts": {
