@@ -1,40 +1,49 @@
-import { useBindingState } from './BindingState.jsx';
+import React from 'react';
+import { useBindingState } from './BindingState';
+import './App.css';
 
-function App() {
+function UserProfile() {
   const state = useBindingState();
 
-  // if (state.abc === undefined) {
-  //   console.log('recreate state');
-  //   state.abc = {
-  //     a: 1,
-  //     b: 1,
-  //     c: {
-  //       a: 1,
-  //       c: {
-  //         a: 1,
-  //         c: {
-  //           a: 1
-  //         }
-  //       }
-  //     }
-  //   };
-  // }
-
-  console.log('render');
   return (
-    <>
-      <h1>Count:{state.count}</h1>
-      {/* <h1>Counter:{state.counter.count}</h1> */}
-      {/* <h1>ABC:{state.abc.c.c.c.a}</h1> */}
-      <button onClick={() => {
-        state.count++;
-        // state.counter.count += 2;
-        // state.abc.c.c.c.a += 3;
-      }}>
-        Increment
-      </button>
-    </>
-  )
+    <div className="card">
+      <h2>User Profile</h2>
+      <p>Name: <strong>{state.user.name}</strong></p>
+      <p>Email: <strong>{state.user.profile.email}</strong></p>
+      <input
+        type="text"
+        value={state.user.name}
+        onChange={(e) => {
+          state.user.name = e.target.value;
+        }}
+      />
+    </div>
+  );
 }
 
-export default App
+function Counter() {
+    const state = useBindingState();
+
+    return (
+        <div className="card">
+            <h2>Counter</h2>
+            <p>Count: <strong>{state.counter}</strong></p>
+            <div className="button-group">
+                <button onClick={() => state.counter++}>Increment</button>
+                <button onClick={() => state.counter--}>Decrement</button>
+            </div>
+        </div>
+    )
+}
+
+function App() {
+  return (
+    <div className="app-container">
+      <h1>React Binding State Demo</h1>
+      <UserProfile />
+      <Counter />
+    </div>
+  );
+}
+
+export default App;

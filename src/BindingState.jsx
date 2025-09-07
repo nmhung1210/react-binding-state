@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useMemo, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const BindingStateContext = createContext();
 
@@ -10,7 +10,7 @@ export function BindingStateProvider({ children, initialState = {} }) {
   const [state, setState] = useState({ ...initialState });
   const createProxy = (obj) => {
     for (const key in obj) {
-      if (typeof obj[key] === 'object') {
+      if (typeof obj[key] === 'object' && obj[key] !== null) {
         obj[key] = createProxy({ ...obj[key] });
       }
     }

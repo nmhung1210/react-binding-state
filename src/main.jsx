@@ -6,7 +6,13 @@ import { BindingStateProvider } from './BindingState.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BindingStateProvider initialState={{
-      count: 0
+      user: {
+        name: 'John Doe',
+        profile: {
+          email: 'john.doe@example.com',
+        },
+      },
+      counter: 0,
     }}>
       <App />
     </BindingStateProvider>
