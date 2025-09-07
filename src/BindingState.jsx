@@ -8,6 +8,15 @@ export function useBindingState() {
 
 export function BindingStateProvider({ children, initialState = {} }) {
   const [state, setState] = useState({ ...initialState });
+
+  let pid;
+  const scheduleSetState = () => {
+    cancelAnimationFrame(pid);
+    pid = requestAnimationFrame(() => {
+      setState({ ...state });
+    });
+  };
+
   const createProxy = (obj) => {
     for (const key in obj) {
       if (typeof obj[key] === 'object' && obj[key] !== null) {
@@ -20,11 +29,12 @@ export function BindingStateProvider({ children, initialState = {} }) {
       },
       set(target, prop, value) {
         target[prop] = value;
-        setState({ ...state });
+        scheduleSetState({ ...state });
         return true;
       },
     });
   };
+  
   return (
     <BindingStateContext.Provider value={createProxy(state)}>
       {children}
