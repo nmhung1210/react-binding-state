@@ -3,6 +3,7 @@
 
 # Build artifacts
 /dist
+/dist-demo
 /dist-ssr
 
 # Logs
