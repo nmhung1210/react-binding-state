@@ -36,10 +36,8 @@
     "two-way binding"
   ],
   "dependencies": {
-    "prop-types": "^15.8.1",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-syntax-highlighter": "^15.6.6"
+    "react-dom": "^19.1.1"
   },
   "files": [
     "dist"
@@ -59,6 +57,8 @@
     "globals": "^16.3.0",
     "jsdom": "^26.1.0",
     "vite": "^7.1.2",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "prop-types": "^15.8.1",
+    "react-syntax-highlighter": "^15.6.6"
   }
 }
