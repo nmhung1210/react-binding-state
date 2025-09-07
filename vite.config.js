@@ -1,11 +1,26 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/react-binding-state/',
   plugins: [react()],
+  build: {
+    lib: {
+      entry: resolve(__dirname, 'src/BindingState.jsx'),
+      name: 'react-binding-state',
+      fileName: 'react-binding-state',
+    },
+    rollupOptions: {
+      external: ['react'],
+      output: {
+        globals: {
+          react: 'React',
+        },
+      },
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',
@@ -20,8 +35,8 @@ export default defineConfig({
         'dist/',
         'src/test/setup.js',
         'src/App.jsx',
-        '**/*.bench.jsx'
+        '**/*.bench.jsx',
       ],
-    }
+    },
   },
-})
+});

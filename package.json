@@ -22,8 +22,8 @@
     "test": "vitest run",
     "coverage": "vitest run --coverage",
     "bench": "vitest bench --run",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "predeploy": "vite build -c vite.config.demo.js",
+    "deploy": "gh-pages -d dist-demo",
     "release": "npm version",
     "postversion": "git push && git push --tags"
   },
