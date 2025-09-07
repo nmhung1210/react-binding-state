@@ -100,7 +100,7 @@ export default App;
 
   return (
     <div className="app-container">
-      <div className="demo-container">
+      <div className="demo-container" data-testid="demo-container">
         <h1>React Binding State Demo</h1>
         <UserProfile />
         <Counter />
