@@ -23,7 +23,9 @@
     "coverage": "vitest run --coverage",
     "bench": "vitest bench --run",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "release": "npm version",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "prop-types": "^15.8.1",
