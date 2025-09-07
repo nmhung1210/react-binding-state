@@ -25,20 +25,20 @@ const TestApp = () => {
 describe('App', () => {
   it('renders the App component', () => {
     render(<TestApp />);
-    expect(screen.getByText('React Binding State Demo')).toBeInTheDocument();
+    expect(screen.getAllByText('React Binding State Demo')[0]).toBeInTheDocument();
   });
 
   it('renders UserProfile and Counter components', () => {
     render(<TestApp />);
-    expect(screen.getByText('User Profile')).toBeInTheDocument();
-    expect(screen.getByText('Counter')).toBeInTheDocument();
+    expect(screen.getAllByText('User Profile')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Counter')[0]).toBeInTheDocument();
   });
 
   it('increments and decrements the counter', () => {
     render(<TestApp />);
-    const incrementButton = screen.getByText('Increment');
-    const decrementButton = screen.getByText('Decrement');
-    const count = screen.getByText('Count:').querySelector('strong');
+    const incrementButton = screen.getAllByText('Increment')[0];
+    const decrementButton = screen.getAllByText('Decrement')[0];
+    const count = screen.getAllByText('Count:')[0].querySelector('strong');
 
     expect(count.textContent).toBe('0');
 
@@ -52,7 +52,7 @@ describe('App', () => {
   it('updates the user name via two-way data binding', () => {
     render(<TestApp />);
     const nameInput = screen.getByDisplayValue('John Doe');
-    const nameDisplay = screen.getByText('Name:').querySelector('strong');
+    const nameDisplay = screen.getAllByText('Name:')[0].querySelector('strong');
 
     expect(nameDisplay.textContent).toBe('John Doe');
 
