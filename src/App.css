@@ -6,10 +6,6 @@ body {
   color: #333;
   margin: 0;
   padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
 }
 
 h1 {
@@ -21,8 +17,27 @@ h1 {
 }
 
 .app-container {
-    max-width: 800px;
-    width: 100%;
+  display: flex;
+  gap: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.demo-container {
+  flex: 1;
+}
+
+.code-container {
+  flex: 1;
+  background-color: #282a36; /* Dracula background */
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* To contain the rounded corners of the syntax highlighter */
+}
+
+.code-container pre {
+  margin: 0 !important; /* Override default pre tag margin */
+  height: 100%;
 }
 
 .card {
@@ -105,4 +120,3 @@ button:last-child {
 button:last-child:hover {
   background-color: #5a6268;
 }
-
