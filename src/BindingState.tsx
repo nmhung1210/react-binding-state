@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode, useRef, Context as ReactContext, useEffect, act } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useRef, Context as ReactContext, useEffect } from 'react';
 
 // A singleton context reference. This is a mutable object that will be updated
 // by the Provider to ensure the hook consumes from the correct, innermost provider.
@@ -58,9 +58,7 @@ export function BindingStateProvider<T extends object>({
       cancelAnimationFrame(pidRef.current);
     }
     pidRef.current = requestAnimationFrame(() => {
-      act(() => {
-        setState(currentState => ({ ...currentState }));
-      });
+      setState(currentState => ({ ...currentState }));
     });
   };
 
