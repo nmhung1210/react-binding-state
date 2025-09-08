@@ -23,6 +23,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "coverage": "vitest run --coverage",
+    "test:coverage:lib": "vitest run --coverage --coverage.include='src/BindingState.tsx'",
     "bench": "vitest bench --run",
     "predeploy": "vite build -c vite.config.demo.js",
     "deploy": "gh-pages -d dist-demo",

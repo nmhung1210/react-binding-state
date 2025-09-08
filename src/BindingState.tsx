@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, ReactNode, useRef, Context 
 
 // A singleton context reference. This is a mutable object that will be updated
 // by the Provider to ensure the hook consumes from the correct, innermost provider.
-const Context = {
+export const Context = {
   current: null as ReactContext<any> | null,
 };
 
