@@ -2,13 +2,15 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import dts from 'vite-plugin-dts';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), dts({ outDir: 'dist' })],
   build: {
+    outDir: 'dist',
     lib: {
-      entry: resolve(__dirname, 'src/BindingState.jsx'),
+      entry: resolve(__dirname, 'src/BindingState.tsx'),
       name: 'react-binding-state',
       fileName: (format) => `react-binding-state.${format === 'es' ? 'mjs' : 'umd.cjs'}`,
     },
@@ -24,19 +26,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './src/setupTests.js',
+    setupFiles: './src/setupTests.ts',
     coverage: {
-      provider: 'v8',
-      exclude: [
-        'src/main.jsx',
-        'src/index.js',
-        'eslint.config.js',
-        'vite.config.js',
-        'dist/',
-        'src/test/setup.js',
-        'src/App.jsx',
-        '**/*.bench.jsx',
-      ],
-    },
-  },
+      provider: 'v8'
+    }
+  }
 });

@@ -1,122 +1,132 @@
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #f0f2f5;
-  color: #333;
-  margin: 0;
-  padding: 2rem;
-}
-
-h1 {
-  font-size: 2.5rem;
-  color: #1a1a1a;
-  text-align: center;
-  margin-bottom: 2rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 .app-container {
   display: flex;
+  flex-direction: column;
   gap: 2rem;
-  max-width: 1600px;
-  margin: 0 auto;
 }
 
-.demo-container {
-  flex: 1;
+.header {
+  text-align: center;
 }
 
-.code-container {
-  flex: 1;
-  background-color: #282a36; /* Dracula background */
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* To contain the rounded corners of the syntax highlighter */
+.header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  background: -webkit-linear-gradient(45deg, #6a1b9a, #42a5f5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.code-container pre {
-  margin: 0 !important; /* Override default pre tag margin */
-  height: 100%;
+.header p {
+  font-size: 1.2rem;
+  color: #9e9e9e;
+  margin: 0;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
 .card {
-  background-color: #ffffff;
+  background: var(--card-background);
+  border: 1px solid var(--card-border);
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  margin-bottom: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease-in-out;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-  font-size: 1.75rem;
-  color: #333;
+.card h2 {
+  font-size: 1.5rem;
   margin-top: 0;
-  border-bottom: 2px solid #eee;
+  border-bottom: 1px solid var(--card-border);
   padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin: 0 0 1rem;
+.profile-card .avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 1.5rem;
+  border: 3px solid var(--primary-color);
 }
 
-input[type='text'] {
+.profile-card .info {
+  display: flex;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input {
   width: 100%;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
+  padding: 0.75rem;
+  border: 1px solid var(--card-border);
   border-radius: 8px;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--foreground-rgb);
+  font-size: 1rem;
 }
 
-input[type='text']:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+.counter-card .count {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem 0;
 }
 
-.button-group {
-    display: flex;
-    gap: 1rem;
+.counter-card .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
+.btn {
   padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
-  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+  transition: all 0.2s ease-in-out;
 }
 
-button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
 }
 
-button:active {
-    transform: translateY(0);
+.btn-primary:hover {
+  filter: brightness(1.2);
 }
 
-button:last-child {
-  background-color: #6c757d;
-  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.2);
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
 }
 
-button:last-child:hover {
-  background-color: #5a6268;
+.btn-secondary:hover {
+  filter: brightness(1.2);
+}
+
+.theme-switcher {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
 }

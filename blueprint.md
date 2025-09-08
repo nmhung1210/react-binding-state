@@ -1,19 +1,26 @@
-# Project Blueprint
+# Project Blueprint: React Binding State
 
 ## Overview
 
-This project is a simple React application that serves as a live demonstration for the `react-binding-state` library. It showcases how to implement two-way data binding for state management in a modern React setup.
+This project is a demonstration of a two-way data binding solution for modern React applications. It provides a `useBindingState` hook that allows components to share and update state in a simple and intuitive way, without the need for complex state management libraries.
 
-## Implemented Features
+## Features
 
-*   **State Management:** Utilizes `react-binding-state` for global, proxy-based state management.
-*   **Components:** 
-    *   `UserProfile`: A component that displays and allows real-time updates to a user's name from the global state.
-    *   `Counter`: A component that demonstrates incrementing and decrementing a numeric value in the global state.
-*   **Styling:** A modern and professional design with a custom color palette, typography, and component styling.
-*   **Licensing:** The project is licensed under the MIT License.
+*   **Two-Way Data Binding:** The `useBindingState` hook provides a simple and efficient way to create two-way data bindings between component state and the UI.
+*   **TypeScript Support:** The entire project is written in TypeScript, providing strong typing and improved developer experience.
+*   **Modern UI:** The application features a modern, responsive user interface with a dark theme and a theme switcher.
+*   **Component-Based Architecture:** The application is built using a component-based architecture, with clear separation of concerns.
+*   **Testing:** The project includes a comprehensive test suite using Vitest and React Testing Library.
 
-## Project Enhancements
+## Styling
 
-*   **Professional `README.md`:** The `README.md` has been rewritten to be more professional and attractive, with badges, clear installation instructions, and updated code examples.
-*   **Removed Live Demo:** The "Live Demo" section has been removed from the `README.md` to focus on the library's usage and API.
+*   **CSS:** The project uses plain CSS for styling, with a modern design system based on CSS variables.
+*   **Themeing:** The application supports both dark and light themes, which can be toggled using the theme switcher.
+
+## Implemented Changes
+
+*   **TypeScript Conversion:** Converted the entire project from JavaScript to TypeScript.
+*   **UI Redesign:** Implemented a new, modern user interface with a dark theme and improved styling.
+*   **Theme Switcher:** Added a theme switcher to allow users to toggle between light and dark modes.
+*   **Test Updates:** Updated the test suite to reflect the new UI and functionality.
+*   **Bug Fixes:** Fixed an issue in the `useBindingState` hook that was causing tests to fail.
