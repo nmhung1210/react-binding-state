@@ -2,22 +2,10 @@ import React, { createContext, useContext, useState, ReactNode, useRef, Context 
 
 // A singleton context reference. This is a mutable object that will be updated
 // by the Provider to ensure the hook consumes from the correct, innermost provider.
-export const Context = {
-  current: null as ReactContext<any> | null,
-};
+export const BindingContext = createContext<ReactContext<any> | null>(null);
 
 export function useBindingState<T = any>(): T {
-  // The hook now reads from the singleton reference, which is guaranteed by the
-  // provider to be the correct context for this part of the React tree.
-  if (!Context.current) {
-    throw new Error('useBindingState must be used within a BindingStateProvider');
-  }
-  const context = useContext(Context.current);
-  if (context === null) {
-    // This error means the hook is used in a component that is not a child of the provider.
-    throw new Error('useBindingState must be used within a BindingStateProvider');
-  }
-  return context;
+  return useContext(BindingContext) as T;
 }
 
 interface BindingStateProviderProps<T extends object> {
@@ -29,25 +17,6 @@ export function BindingStateProvider<T extends object>({
   children,
   initialState,
 }: BindingStateProviderProps<T>): React.ReactElement {
-  // Each provider instance gets its own unique context object, created only once.
-  const contextRef = useRef<ReactContext<T | null> | null>(null);
-  if (contextRef.current === null) {
-    contextRef.current = createContext<T | null>(null);
-  }
-
-  // Before this provider renders, it sets itself as the "current" one.
-  // We save the one that was current before to handle nesting and test cleanup.
-  const previousContext = Context.current;
-  Context.current = contextRef.current;
-
-  // After this provider unmounts, we restore the previous context.
-  // This is key for tests (unmounting between tests) and for nested providers.
-  useEffect(() => {
-    return () => {
-      Context.current = previousContext;
-    };
-  }, [previousContext]);
-
   const [state, setState] = useState<T>(initialState);
   const pidRef = useRef<number>(0);
   const proxyCache = useRef(new WeakMap()).current;
@@ -58,7 +27,7 @@ export function BindingStateProvider<T extends object>({
       cancelAnimationFrame(pidRef.current);
     }
     pidRef.current = requestAnimationFrame(() => {
-      setState(currentState => ({ ...currentState }));
+      setState((currentState: T) => ({ ...currentState }));
     });
   };
 
@@ -115,7 +84,6 @@ export function BindingStateProvider<T extends object>({
   };
 
   const proxyState = createProxy(state);
-  const Provider = (contextRef.current as ReactContext<T>).Provider;
 
-  return <Provider value={proxyState}>{children}</Provider>;
+  return <BindingContext value={proxyState}>{children}</BindingContext>;
 }
